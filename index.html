@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Homework5</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+        <script src="echarts.min.js"></script>     
+    </head>
+    <body>
+        <div class="container">
+            <h1 style="text-align: center">按經濟活動劃分的本地生產總值</h1>
+            <br>
+            <h4 style="text-align: center">LI Yujie Jade 15250717</h4>
+            <a href="data.xlsx">
+                <p style="text-align: right">original data</p>
+            </a>
+            <div class="col-xs-12" id="main1" style="width: 1200px;height:500px;"></div>
+            <br>
+            <div class="col-xs-12" id="main2" style="width: 1200px;height:400px;"></div>
+            <br>
+        </div>
+        <!--chart 1 script-->
+        <script type="text/javascript">
+        $(function() {
+            var myChart1 = echarts.init(document.getElementById('main1'));
+            var colors = ['#f95994', '#c03a2a', '#16a185', '#2c3f50', '#666', '#ce38f7', '#c9ef83', '#55e8ca'];
+            option = {
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['進出口貿易、批發及零售', '住宿及膳食服務','運輸、倉庫、郵政及速遞服務','資訊及通訊','金融及保險','地產、專業及商用服務', '公共行政、社會及個人服務','樓宇業權','總計']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                yAxis:  [{
+                    type: 'value'
+                },{
+                    type: 'value',
+                    name: '總計',
+                    min: 1200000,
+                    max: 2500000,
+                    position: 'right',
+                    axisLine: {
+                        lineStyle: {
+                            color: colors[5]
+                        }
+                    },
+                    splitLine: false,
+                    axisLabel: {
+                        formatter: '{value} 百萬港幣'
+                    },
+                }],
+                xAxis: {
+                    type: 'category',
+                    data: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015']
+                },
+                series: [
+                    {
+                        name: '進出口貿易、批發及零售',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [276977, 281798, 284349, 289587,320828,359732,366567,379466,399200,370226,413308,492900,511537,523741,531541,527399 ]
+                    },
+                    {
+                        name: '住宿及膳食服務',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [37843,34449,30949,26505,34128,37494,42701,48830,53660,48789,56418,66421,72044,75413,78725,78176]
+                    },
+                    {
+                        name: '運輸、倉庫、郵政及速遞服務',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [97598,94027,97304,95360,108693,115475,116294,119862,98390,99208,137941,120034,120609,125465,137658,150074]
+                    },
+                    {
+                        name: '資訊及通訊',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [42871,44515,45811,45051,42768,45779,48951,51551,49127,47893,55024,62952,70866,76145,77761,81645]
+                    },
+                    {
+                        name: '金融及保險',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [164195,153787,154099,163267,168278,189741,245954,322644,277112,255900,283752,305282,319312,346248,367989,409872]
+                    },
+                    {
+                        name: '地產、專業及商用服務',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [118248,111431,106137,103309,113633,122336,128685,147339,166086,173903,188476,213987,232416,225789,239434,253020]
+                    },
+                    {
+                        name: '公共行政、社會及個人服務',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [243423,255543,252581,247694,249018,247942,251211,262395,278100,288109,295257,313585,337678,356326,379577,406131]
+                    },
+                    {
+                        name: '樓宇業權',
+                        type: 'bar',
+                        stack: '总量',
+                        data: [139111,143334,139416,131450,126212,139118,152019,158388,177915,182696,184745,195005,208036,219166,232053,247373]
+                    },
+                    {
+                        name:'總計',
+                        type:'line',
+                        yAxisIndex:1,
+                        color: colors[5],
+                        data:[1283035,1269989,1249781,1227056,1285324,1378002,1473535,1605245,1620013,1581824,1737298,1901049,2013038,2098080,2205961,2326592],
+                        markPoint:{
+                            data:[{
+                                type: 'max',
+                                name: '最大值',
+                                symbol: 'pin',
+                            }, {
+                                type: 'min',
+                                name: '最小值',
+                                symbol:'pin',
+                        }]
+                        }
+                    }
+                ]
+            };
+            myChart1.setOption(option);
+        });
+        </script>
+        <!--chart 2 script-->
+        <script type="text/javascript">
+                $(function() {
+                    console.log("ihhhhh")
+                    $.getJSON('chart2.json', function(data) {
+                        var option = data;
+                        var myChart2 = echarts.init(document.getElementById('main2'));
+                        myChart2.setOption(option);
+                    })
+                });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    </body>
+</html>
